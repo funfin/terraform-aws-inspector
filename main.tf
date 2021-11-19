@@ -43,8 +43,14 @@ data "aws_iam_policy_document" "inspector_event_role_policy" {
   }
 }
 
+resource "aws_inspector_resource_group" "assessment" {
+  count = length(var.tags) > 0 ? 1 : 0
+  tags  = var.tags
+}
+
 resource "aws_inspector_assessment_target" "assessment" {
-  name = "${var.name_prefix}-assessment-target"
+  name               = "${var.name_prefix}-assessment-target"
+  resource_group_arn = one(aws_inspector_resource_group.assessment.*.arn)
 }
 
 resource "aws_inspector_assessment_template" "assessment" {

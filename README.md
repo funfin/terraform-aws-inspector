@@ -28,6 +28,7 @@ Note: this module currently does not support the customization of assessment tar
 * `ruleset_cis` - Default `true`; Includes the CIS Benchmarks [ruleset](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) in the Inspector assessment.
 * `ruleset_security_best_practices` - Default `true`; Includes the AWS Security Best Practices [ruleset](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) in the Inspector assessment.
 * `ruleset_network_reachability` - Default `true`; Includes the Network Reachability [ruleset](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) in the Inspector assessment.
+* `tags` - Default `{}`; Use tags to choose EC2 instances that you want to include in the assessment target. If empty include all EC2 instances in this AWS account and Region in this assessment target
 
 ### Simple Example
 
@@ -56,6 +57,7 @@ module "my-inspector-deployment" {
   ruleset_cis                     = false
   ruleset_security_best_practices = true
   ruleset_network_reachability    = false
+  tags                            = { "env": "production"}
 }
 ```
 
