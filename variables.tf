@@ -38,3 +38,9 @@ variable "schedule_expression" {
   description = "AWS Schedule Expression: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
   default     = "rate(7 days)"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to choose EC2 instances that you want to include in the assessment target"
+  default     = {}
+}
